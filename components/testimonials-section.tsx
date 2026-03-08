@@ -43,7 +43,7 @@ export function TestimonialsSection() {
     <section id="testimonios" className="relative py-24 lg:py-32" ref={ref}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mb-16 text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-primary">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Testimonios
           </p>
           <h2 className="font-[family-name:var(--font-heading)] text-3xl font-bold uppercase tracking-tight text-foreground md:text-5xl text-balance">

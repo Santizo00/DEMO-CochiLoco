@@ -57,7 +57,7 @@ export function BeforeAfterSection() {
     <section id="comparar" className="relative py-24 lg:py-32" ref={sectionRef}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mb-16 text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-primary">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Transformación
           </p>
           <h2 className="font-[family-name:var(--font-heading)] text-3xl font-bold uppercase tracking-tight text-foreground md:text-5xl text-balance">
@@ -137,7 +137,7 @@ export function BeforeAfterSection() {
             <div className="absolute left-4 top-4 z-10 rounded-lg bg-background/80 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-foreground backdrop-blur-sm">
               Antes
             </div>
-            <div className="absolute right-4 top-4 z-10 rounded-lg bg-primary/90 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-primary-foreground backdrop-blur-sm">
+            <div className="absolute right-4 top-4 z-10 rounded-lg bg-accent/90 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-accent-foreground backdrop-blur-sm">
               Después
             </div>
           </div>

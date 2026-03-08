@@ -12,19 +12,18 @@ type GalleryItem = {
 }
 
 export function GallerySection() {
-  const [items, setItems] = useState<GalleryItem[]>([])
+  const [items, setItems] = useState<GalleryItem[]>(() => {
+    if (typeof window === "undefined") return []
+    try {
+      const stored = localStorage.getItem("brillomax-gallery")
+      return stored ? JSON.parse(stored) : []
+    } catch {
+      return []
+    }
+  })
   const [previewItem, setPreviewItem] = useState<GalleryItem | null>(null)
   const [isDragging, setIsDragging] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem("brillomax-gallery")
-      if (stored) setItems(JSON.parse(stored))
-    } catch {
-      // ignore
-    }
-  }, [])
 
   useEffect(() => {
     if (items.length > 0) {
@@ -83,7 +82,7 @@ export function GallerySection() {
     <section id="galeria" className="relative py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mb-16 text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-primary">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Galería
           </p>
           <h2 className="font-[family-name:var(--font-heading)] text-3xl font-bold uppercase tracking-tight text-foreground md:text-5xl text-balance">
@@ -99,7 +98,7 @@ export function GallerySection() {
           className={`relative mb-12 rounded-xl border-2 border-dashed p-12 text-center transition-all ${
             isDragging
               ? "border-primary bg-primary/5"
-              : "border-border hover:border-primary/40"
+              : "border-border hover:border-accent/60"
           }`}
           onDragOver={(e) => {
             e.preventDefault()
@@ -139,7 +138,7 @@ export function GallerySection() {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="group relative aspect-square cursor-pointer overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/40"
+                className="group relative aspect-square cursor-pointer overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-accent/60"
                 onClick={() => setPreviewItem(item)}
               >
                 {item.type === "image" ? (
@@ -222,9 +221,12 @@ export function GallerySection() {
             onClick={(e) => e.stopPropagation()}
           >
             {previewItem.type === "image" ? (
-              <img
+              <Image
                 src={previewItem.url}
                 alt={previewItem.name}
+                width={1600}
+                height={900}
+                unoptimized
                 className="max-h-[85vh] rounded-xl object-contain"
               />
             ) : (

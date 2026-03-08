@@ -8,7 +8,8 @@ export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    setIsVisible(true)
+    const frame = requestAnimationFrame(() => setIsVisible(true))
+    return () => cancelAnimationFrame(frame)
   }, [])
 
   return (
@@ -30,12 +31,22 @@ export function HeroSection() {
             isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
         >
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-primary">
+          <div className="mx-auto mb-6 w-fit rounded-2xl border border-border bg-card/85 p-2 backdrop-blur-sm glow-blue-sm">
+            <Image
+              src="/logo.jpeg"
+              alt="Logo El Cochi Loco"
+              width={420}
+              height={420}
+              priority
+              className="h-28 w-auto rounded-xl object-contain md:h-36 lg:h-40"
+            />
+          </div>
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Cera Premium para Camiones
           </p>
           <h1 className="font-[family-name:var(--font-heading)] text-4xl font-bold uppercase leading-tight tracking-tight text-foreground md:text-6xl lg:text-7xl text-balance">
             Haz que tu camión brille{" "}
-            <span className="text-primary text-glow">como nunca antes</span>
+            <span className="text-accent text-glow">como nunca antes</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl leading-relaxed">
             Cera profesional de alto rendimiento para acabados espejo
@@ -55,7 +66,7 @@ export function HeroSection() {
           </a>
           <a
             href="#galeria"
-            className="rounded-lg border border-border bg-secondary/50 px-8 py-4 text-sm font-bold uppercase tracking-wider text-foreground backdrop-blur-sm transition-all hover:border-primary/50 hover:bg-secondary"
+            className="rounded-lg border border-border bg-secondary/50 px-8 py-4 text-sm font-bold uppercase tracking-wider text-foreground backdrop-blur-sm transition-all hover:border-accent/60 hover:bg-secondary"
           >
             Subir Mi Resultado
           </a>

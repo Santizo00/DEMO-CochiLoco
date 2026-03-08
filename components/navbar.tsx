@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X, Sparkles } from "lucide-react"
+import Image from "next/image"
+import { Menu, X } from "lucide-react"
 
 const navLinks = [
   { href: "#inicio", label: "Inicio" },
@@ -31,12 +32,16 @@ export function Navbar() {
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="flex h-16 items-center justify-between lg:h-20">
-          <a href="#inicio" className="flex items-center gap-2">
-            <Sparkles className="h-6 w-6 text-primary" />
-            <span className="font-[family-name:var(--font-heading)] text-xl font-bold uppercase tracking-wider text-foreground">
-              BrilloMax<span className="text-primary"> Pro</span>
-            </span>
+        <div className="flex h-20 items-center justify-between lg:h-24">
+          <a href="#inicio" className="flex items-center">
+            <Image
+              src="/logo.jpeg"
+              alt="Logo El Cochi Loco"
+              width={220}
+              height={220}
+              priority
+              className="h-14 w-auto object-contain lg:h-20"
+            />
           </a>
 
           <div className="hidden items-center gap-8 lg:flex">

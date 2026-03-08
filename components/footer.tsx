@@ -1,18 +1,21 @@
-import { Sparkles } from "lucide-react"
+import Image from "next/image"
 
 export function Footer() {
   return (
     <footer className="border-t border-border py-12">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
-          <div className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
-            <span className="font-[family-name:var(--font-heading)] text-lg font-bold uppercase tracking-wider text-foreground">
-              BrilloMax<span className="text-primary"> Pro</span>
-            </span>
-          </div>
+          <a href="#inicio" className="flex items-center">
+            <Image
+              src="/logo.jpeg"
+              alt="Logo El Cochi Loco"
+              width={200}
+              height={200}
+              className="h-12 w-auto object-contain"
+            />
+          </a>
           <p className="text-center text-sm text-muted-foreground">
-            {"2026 BrilloMax Pro. Todos los derechos reservados. Sitio demo."}
+            {"2026 El Cochi Loco. Todos los derechos reservados."}
           </p>
         </div>
       </div>

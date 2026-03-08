@@ -11,26 +11,14 @@ export const metadata: Metadata = {
   description: 'Cera profesional de alto rendimiento para acabados espejo. Protección extrema y brillo duradero para tu camión.',
   generator: 'v0.app',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/logo.jpeg',
+    shortcut: '/logo.jpeg',
+    apple: '/logo.jpeg',
   },
 }
 
 export const viewport: Viewport = {
-  themeColor: '#0a0f1a',
+  themeColor: '#181112',
   userScalable: true,
 }
 

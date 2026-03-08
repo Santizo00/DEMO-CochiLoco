@@ -46,7 +46,7 @@ export function FeaturesSection() {
     <section id="producto" className="relative py-24 lg:py-32" ref={ref}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mb-16 text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-primary">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             El Producto
           </p>
           <h2 className="font-[family-name:var(--font-heading)] text-3xl font-bold uppercase tracking-tight text-foreground md:text-5xl text-balance">
@@ -74,7 +74,7 @@ export function FeaturesSection() {
               <h3 className="font-[family-name:var(--font-heading)] text-xl font-bold uppercase text-foreground">
                 {feature.title}
               </h3>
-              <p className="mb-3 text-sm font-medium text-primary">{feature.subtitle}</p>
+              <p className="mb-3 text-sm font-medium text-accent">{feature.subtitle}</p>
               <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
             </div>
           ))}
