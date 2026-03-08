@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
-const basePath = process.env.BASE_PATH || ''
+const basePath = process.env.BASE_PATH || '/DEMO-CochiLoco'
 
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
   basePath,
-  assetPrefix: basePath || undefined,
+  assetPrefix: basePath,
   typescript: {
     ignoreBuildErrors: true,
   },
