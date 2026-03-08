@@ -35,7 +35,7 @@ export function Navbar() {
         <div className="flex h-20 items-center justify-between lg:h-24">
           <a href="#inicio" className="flex items-center">
             <Image
-              src="/logo.jpeg"
+              src="logo.jpeg"
               alt="Logo El Cochi Loco"
               width={220}
               height={220}

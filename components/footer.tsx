@@ -7,7 +7,7 @@ export function Footer() {
         <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
           <a href="#inicio" className="flex items-center">
             <Image
-              src="/logo.jpeg"
+              src="logo.jpeg"
               alt="Logo El Cochi Loco"
               width={200}
               height={200}

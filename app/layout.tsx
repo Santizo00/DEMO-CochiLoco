@@ -11,9 +11,9 @@ export const metadata: Metadata = {
   description: 'Cera profesional de alto rendimiento para acabados espejo. Protección extrema y brillo duradero para tu camión.',
   generator: 'v0.app',
   icons: {
-    icon: '/logo.jpeg',
-    shortcut: '/logo.jpeg',
-    apple: '/logo.jpeg',
+    icon: 'logo.jpeg',
+    shortcut: 'logo.jpeg',
+    apple: 'logo.jpeg',
   },
 }
 

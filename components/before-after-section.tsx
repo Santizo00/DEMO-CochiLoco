@@ -88,7 +88,7 @@ export function BeforeAfterSection() {
           >
             {/* After (bottom layer) */}
             <Image
-              src="/images/after-truck.jpg"
+              src="images/after-truck.jpg"
               alt="Camión después de aplicar BrilloMax Pro"
               fill
               className="object-cover"
@@ -101,7 +101,7 @@ export function BeforeAfterSection() {
               style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
             >
               <Image
-                src="/images/before-truck.jpg"
+                src="images/before-truck.jpg"
                 alt="Camión antes de aplicar BrilloMax Pro"
                 fill
                 className="object-cover"

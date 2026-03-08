@@ -15,7 +15,7 @@ export function HeroSection() {
   return (
     <section id="inicio" className="relative flex min-h-screen items-center justify-center overflow-hidden">
       <Image
-        src="/images/hero-truck.jpg"
+        src="images/hero-truck.jpg"
         alt="Camión brillante con acabado espejo"
         fill
         className="object-cover"
@@ -33,7 +33,7 @@ export function HeroSection() {
         >
           <div className="mx-auto mb-6 w-fit rounded-2xl border border-border bg-card/85 p-2 backdrop-blur-sm glow-blue-sm">
             <Image
-              src="/logo.jpeg"
+              src="logo.jpeg"
               alt="Logo El Cochi Loco"
               width={420}
               height={420}
