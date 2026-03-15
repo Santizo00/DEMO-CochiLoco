@@ -8,7 +8,7 @@ const testimonials = [
     name: "Carlos Ramírez",
     role: "Dueño de Flota - TransNorte",
     rating: 5,
-    text: "Desde que usamos BrilloMax Pro en nuestros 15 camiones, los clientes nos reconocen en la carretera. La imagen profesional ha mejorado nuestro negocio tremendamente.",
+    text: "Desde que usamos CochiLoco en nuestros 15 camiones, los clientes nos reconocen en la carretera. La imagen profesional ha mejorado nuestro negocio tremendamente.",
   },
   {
     name: "Miguel Ángel Torres",
@@ -20,7 +20,7 @@ const testimonials = [
     name: "Roberto Díaz",
     role: "Gerente de Mantenimiento - LogiMex",
     rating: 5,
-    text: "La relación costo-beneficio es inigualable. BrilloMax Pro protege la pintura de nuestros trailers contra el clima extremo y reduce los costos de mantenimiento estético.",
+    text: "La relación costo-beneficio es inigualable. CochiLoco protege la pintura de nuestros trailers contra el clima extremo y reduce los costos de mantenimiento estético.",
   },
 ]
 

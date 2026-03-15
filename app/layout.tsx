@@ -7,8 +7,8 @@ const _inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const _oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
 
 export const metadata: Metadata = {
-  title: 'BrilloMax Pro – Cera Premium para Camiones',
-  description: 'Cera profesional de alto rendimiento para acabados espejo. Protección extrema y brillo duradero para tu camión.',
+  title: 'CochiLoco – Cera Premium para Camiones',
+  description: 'CochiLoco ofrece cera profesional de alto rendimiento para acabados espejo, protección extrema y brillo duradero para tu camión.',
   generator: 'v0.app',
   icons: {
     icon: 'logo.jpeg',

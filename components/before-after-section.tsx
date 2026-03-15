@@ -64,7 +64,7 @@ export function BeforeAfterSection() {
             Antes y Después
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground leading-relaxed">
-            Desliza para ver la diferencia que hace BrilloMax Pro.
+            Desliza para ver la diferencia que hace CochiLoco.
           </p>
         </div>
 
@@ -89,7 +89,7 @@ export function BeforeAfterSection() {
             {/* After (bottom layer) */}
             <Image
               src="images/after-truck.jpg"
-              alt="Camión después de aplicar BrilloMax Pro"
+              alt="Camión después de aplicar CochiLoco"
               fill
               className="object-cover"
               quality={85}
@@ -102,7 +102,7 @@ export function BeforeAfterSection() {
             >
               <Image
                 src="images/before-truck.jpg"
-                alt="Camión antes de aplicar BrilloMax Pro"
+                alt="Camión antes de aplicar CochiLoco"
                 fill
                 className="object-cover"
                 quality={85}

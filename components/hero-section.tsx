@@ -34,7 +34,7 @@ export function HeroSection() {
           <div className="mx-auto mb-6 w-fit rounded-2xl border border-border bg-card/85 p-2 backdrop-blur-sm glow-blue-sm">
             <Image
               src="logo.jpeg"
-              alt="Logo El Cochi Loco"
+              alt="Logo CochiLoco"
               width={420}
               height={420}
               priority

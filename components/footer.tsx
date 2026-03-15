@@ -8,14 +8,14 @@ export function Footer() {
           <a href="#inicio" className="flex items-center">
             <Image
               src="logo.jpeg"
-              alt="Logo El Cochi Loco"
+              alt="Logo CochiLoco"
               width={200}
               height={200}
               className="h-12 w-auto object-contain"
             />
           </a>
           <p className="text-center text-sm text-muted-foreground">
-            {"2026 El Cochi Loco. Todos los derechos reservados."}
+            {"2026 CochiLoco. Todos los derechos reservados."}
           </p>
         </div>
       </div>
