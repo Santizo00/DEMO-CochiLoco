@@ -1,25 +1,51 @@
 # DEMO-CochiLoco
-Demo landing page para la presentación de productos de brillo y protección para camiones: aluminio, cromo, vidrio y cera profesional. Incluye galería interactiva para carga de imágenes y videos como catálogo visual. Proyecto únicamente frontend para demostración comercial.
 
-## Deploy en GitHub Pages
+Landing page de CochiLoco para productos de limpieza y pulido automotriz, construida con Next.js y export estático para GitHub Pages.
 
-Este proyecto ya está configurado para export estático de Next.js y despliegue automático con GitHub Actions.
+## Funcionalidades
 
-### 1) Configura Pages en GitHub
+- Secciones completas: Inicio, Producto, Galería, Antes/Después, Testimonios y Contacto.
+- Login de administrador desde el navbar.
+- Galería pública alimentada desde Supabase Storage.
+- Carga y eliminación de imágenes restringida a administrador por medio de Edge Functions.
+- Comparador Antes/Después con imágenes dinámicas:
+  - Lectura pública desde Supabase.
+  - Actualización por slot (`before` y `after`) solo para admin.
+  - Al subir una nueva imagen, se reemplaza automáticamente la anterior del mismo slot.
 
-- Ve a Settings > Pages en tu repositorio.
-- En Build and deployment, selecciona Source: GitHub Actions.
+## Stack
 
-### 2) Sube cambios a la rama main
+- Next.js 16 (App Router, static export)
+- TypeScript + Tailwind CSS
+- Supabase (Storage, tabla `imagenes`, Edge Functions)
 
-- Cada push a main ejecuta el workflow:
-	- instala dependencias
-	- compila el sitio estático
-	- publica en GitHub Pages
+## Variables de entorno
 
-### 3) Build local (opcional)
+Usa `.env.local` (basado en `.env.example`):
 
-- npm install
-- npm run build
+```bash
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=...
+```
 
-La salida estática se genera en la carpeta out.
+## Desarrollo local
+
+```bash
+npm install
+npm run lint
+npm run build
+npm start
+```
+
+## Supabase Functions usadas
+
+- `admin-login`
+- `admin-upload-image`
+- `admin-delete-image`
+- `admin-upsert-comparison-image`
+- `get-comparison-images`
+
+## Deploy
+
+Cada `push` a `main` dispara el workflow de GitHub Actions y publica automáticamente en GitHub Pages.
+

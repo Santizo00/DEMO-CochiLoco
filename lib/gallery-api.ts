@@ -23,6 +23,13 @@ export type UploadAdminImageResponse = {
   maxBytes: number
 }
 
+export type ComparisonSlot = "before" | "after"
+
+export type ComparisonImages = {
+  beforeUrl: string | null
+  afterUrl: string | null
+}
+
 function functionUrl(name: string) {
   return `${supabaseUrl}/functions/v1/${name}`
 }
@@ -32,7 +39,7 @@ async function callFunction(input: RequestInfo | URL, init: RequestInit) {
     return await fetch(input, init)
   } catch {
     throw new Error(
-      'No se pudo conectar con Supabase Functions. Verifica que las funciones admin-login, admin-upload-image y admin-delete-image esten desplegadas.'
+      "No se pudo conectar con Supabase Functions. Verifica que las funciones de administracion esten desplegadas."
     )
   }
 }
@@ -59,6 +66,20 @@ function mapGalleryImage(item: {
     ...item,
     publicUrl: supabase.storage.from("imagenes").getPublicUrl(item.ruta).data.publicUrl,
   }
+}
+
+function withCacheVersion(url: string, version: string | null) {
+  if (!version) {
+    return url
+  }
+
+  const separator = url.includes("?") ? "&" : "?"
+  return `${url}${separator}v=${encodeURIComponent(version)}`
+}
+
+function mapComparisonFileToUrl(path: string, createdAt: string | null) {
+  const baseUrl = supabase.storage.from("imagenes").getPublicUrl(path).data.publicUrl
+  return withCacheVersion(baseUrl, createdAt)
 }
 
 async function listPublicBucketImagesFallback() {
@@ -147,6 +168,99 @@ export async function fetchGalleryImages() {
   return data.map(mapGalleryImage)
 }
 
+export async function fetchComparisonImages() {
+  const functionResponse = await callFunction(functionUrl("get-comparison-images"), {
+    method: "GET",
+    headers: {
+      apikey: supabasePublishableKey,
+    },
+  })
+
+  const functionPayload = await parseFunctionResponse<ComparisonImages>(
+    functionResponse,
+    "No se pudieron cargar las imagenes del comparador."
+  )
+
+  if (functionPayload.beforeUrl || functionPayload.afterUrl) {
+    return functionPayload
+  }
+
+  const filesBySlot: Record<ComparisonSlot, { path: string; createdAt: string | null } | null> = {
+    before: null,
+    after: null,
+  }
+
+  let offset = 0
+
+  while (true) {
+    const { data, error } = await supabase.storage.from("imagenes").list("comparador", {
+      limit: 100,
+      offset,
+      sortBy: { column: "name", order: "asc" },
+    })
+
+    if (error) {
+      throw new Error("No se pudieron cargar las imagenes del comparador.")
+    }
+
+    const entries = data || []
+
+    for (const entry of entries) {
+      const name = (entry as { name?: string }).name || ""
+
+      if (!name) {
+        continue
+      }
+
+      const slot = name.startsWith("before-")
+        ? "before"
+        : name.startsWith("after-")
+          ? "after"
+          : null
+
+      if (!slot) {
+        continue
+      }
+
+      const createdAt = (entry as { created_at?: string | null }).created_at || null
+      const current = filesBySlot[slot]
+
+      if (!current) {
+        filesBySlot[slot] = {
+          path: `comparador/${name}`,
+          createdAt,
+        }
+        continue
+      }
+
+      const currentTime = current.createdAt ? new Date(current.createdAt).getTime() : 0
+      const nextTime = createdAt ? new Date(createdAt).getTime() : 0
+
+      if (nextTime >= currentTime) {
+        filesBySlot[slot] = {
+          path: `comparador/${name}`,
+          createdAt,
+        }
+      }
+    }
+
+    if (entries.length < 100) {
+      break
+    }
+
+    offset += 100
+  }
+
+  return {
+    beforeUrl: filesBySlot.before
+      ? mapComparisonFileToUrl(filesBySlot.before.path, filesBySlot.before.createdAt)
+      : null,
+    afterUrl: filesBySlot.after
+      ? mapComparisonFileToUrl(filesBySlot.after.path, filesBySlot.after.createdAt)
+      : null,
+  } satisfies ComparisonImages
+}
+
 export async function loginAdmin(usuario: string, password: string) {
   const response = await callFunction(functionUrl("admin-login"), {
     method: "POST",
@@ -209,4 +323,29 @@ export async function deleteAdminImage(imageId: string, sessionToken: string) {
     response,
     "No fue posible eliminar la imagen seleccionada."
   )
+}
+
+export async function uploadComparisonImage(
+  slot: ComparisonSlot,
+  file: File,
+  sessionToken: string
+) {
+  const formData = new FormData()
+  formData.append("token", sessionToken)
+  formData.append("slot", slot)
+  formData.append("file", file)
+
+  const response = await callFunction(functionUrl("admin-upsert-comparison-image"), {
+    method: "POST",
+    headers: {
+      apikey: supabasePublishableKey,
+    },
+    body: formData,
+  })
+
+  return parseFunctionResponse<{
+    slot: ComparisonSlot
+    path: string
+    publicUrl: string
+  }>(response, "No fue posible actualizar la imagen del comparador.")
 }
