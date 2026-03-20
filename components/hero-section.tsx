@@ -42,14 +42,14 @@ export function HeroSection() {
             />
           </div>
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
-            Cera Premium para Camiones
+            Liquido Artesanal para Pulir
           </p>
           <h1 className="font-[family-name:var(--font-heading)] text-4xl font-bold uppercase leading-tight tracking-tight text-foreground md:text-6xl lg:text-7xl text-balance">
             Haz que tu camión brille{" "}
             <span className="text-accent text-glow">como nunca antes</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl leading-relaxed">
-            Cera profesional de alto rendimiento para acabados espejo
+            Liquido profesional de alto rendimiento para acabados espejo
           </p>
         </div>
 
